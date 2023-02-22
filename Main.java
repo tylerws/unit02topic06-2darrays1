@@ -41,13 +41,23 @@ public static double[][] copyRagged(double[][] nums) {
   return copyRa;
 }
 
-// public static double[][] printTranspose(double[][] nums) {
-//   int rows = nums.length;
-//   int columns = nums[0].length;
-//   double[][] transpose = new double[columns][rows];
+private static double[][] makeTranspose(double[][] nums) {
+  int rows = nums.length;
+  int columns = nums[0].length;
+  double[][] transpose = new double[columns][rows];
+  for (int r = 0; r < nums[0].length; r++) {
+    for (int c = 0; c < nums.length; c++) {
+      transpose[r][c] = nums[c][r];
+    }
+  }
+  return transpose;
 
-// }
+}
 
+public static void printTranspose(double[][] a) {
+  double[][] theTranspose = makeTranspose(a);
+
+}
 
 
   public static void main(String[] args) {
@@ -72,12 +82,28 @@ public static double[][] copyRagged(double[][] nums) {
     // System.out.println("original array memory address: " + originalRagged);
     // System.out.println("copy array memory address: " + copyOfRagged);
 
-    double[][] originalRagged = new double[][] {{1.0, 5.0, 2.0}, {3.0, 6.0}, {5.0, 6.0}};
-    double[][] copyOfRagged = copyRagged(originalRagged);
+    // double[][] originalRagged = new double[][] {{1.0, 5.0, 2.0}, {3.0, 6.0}, {5.0, 6.0}};
+    // double[][] copyOfRagged = copyRagged(originalRagged);
 
-    System.out.println("contents of copy: " + Arrays.deepToString(copyOfRagged));
-    System.out.println("original array memory address: " + originalRagged);
-    System.out.println("copy array memory address: " + copyOfRagged);
+    // System.out.println("contents of copy: " + Arrays.deepToString(copyOfRagged));
+    // System.out.println("original array memory address: " + originalRagged);
+    // System.out.println("copy array memory address: " + copyOfRagged);
+
+    double[][] originalTranspose = new double[][] {{99, 85, 98},
+    {98, 57, 79},
+    {92, 77, 74},
+    {94, 62, 81},
+    {99, 94, 92},
+    {80, 76.5, 67},
+    {76, 58.5, 90.5},
+    {92, 66, 91},
+    {77, 70.5, 66.5},
+    {89, 89.5, 81}};
+    double[][] copyOfTranspose = copyRagged(originalTranspose);
+
+    System.out.println("contents of copy: " + Arrays.deepToString(copyOfTranspose));
+    System.out.println("original array memory address: " + originalTranspose);
+    System.out.println("copy array memory address: " + copyOfTranspose);
 
   }
 }

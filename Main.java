@@ -1,6 +1,7 @@
 import java.util.Arrays;
 public class Main {
   
+// good
 public static double[][] copySquare(double[][] nums) {
   int rowsSq = nums.length;
   int columnsSq = rowsSq;
@@ -14,6 +15,7 @@ public static double[][] copySquare(double[][] nums) {
   return copySq;
 }
 
+// good
 public static double[][] copyRectangle(double[][] nums) {
   int rowsRe = nums.length;
   int columnsRe = nums[0].length;
@@ -27,6 +29,7 @@ public static double[][] copyRectangle(double[][] nums) {
  return copyRe;
 }
 
+// good
 public static double[][] copyRagged(double[][] nums) {
   double[][] copyRa = new double[nums.length][];
   for (int r = 0; r < nums.length; r++) {
@@ -56,8 +59,10 @@ private static double[][] makeTranspose(double[][] nums) {
 
 public static void printTranspose(double[][] a) {
   double[][] theTranspose = makeTranspose(a);
-
+// TODO: finish this
 }
+
+// TODO: implement withWeightedAverage
 
 
   public static void main(String[] args) {

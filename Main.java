@@ -56,7 +56,20 @@ private static double[][] makeTranspose(double[][] nums) {
 
 public static void printTranspose(double[][] a) {
   double[][] theTranspose = makeTranspose(a);
-
+  System.out.println("transpose received was this: " + Arrays.deepToString(theTranspose));
+  int r = 0;
+  String wholeThing = "";
+  while (r < theTranspose.length) {
+    String line = "";
+    int c = 0;
+    while (c < theTranspose[0].length) {
+      line = line + " " + theTranspose[r][c];
+      c++;
+    }
+    wholeThing = wholeThing + line + "\n";
+    r++;
+  }
+  System.out.println(wholeThing);
 }
 
 
@@ -89,7 +102,7 @@ public static void printTranspose(double[][] a) {
     // System.out.println("original array memory address: " + originalRagged);
     // System.out.println("copy array memory address: " + copyOfRagged);
 
-    double[][] originalTranspose = new double[][] {{99, 85, 98},
+    double[][] originalArray = new double[][] {{99, 85, 98},
     {98, 57, 79},
     {92, 77, 74},
     {94, 62, 81},
@@ -99,11 +112,10 @@ public static void printTranspose(double[][] a) {
     {92, 66, 91},
     {77, 70.5, 66.5},
     {89, 89.5, 81}};
-    double[][] copyOfTranspose = copyRagged(originalTranspose);
 
-    System.out.println("contents of copy: " + Arrays.deepToString(copyOfTranspose));
-    System.out.println("original array memory address: " + originalTranspose);
-    System.out.println("copy array memory address: " + copyOfTranspose);
+    // double[][] transpose = makeTranspose(originalArray);
+    // System.out.println("contents of transpose: " + Arrays.deepToString(transpose));
 
+    printTranspose(originalArray);
   }
 }

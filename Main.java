@@ -72,6 +72,45 @@ public static void printTranspose(double[][] a) {
   System.out.println(wholeThing);
 }
 
+public static double[][] withWeightedAverage(double[][] a, double[] weights) {
+  int oldRow = a.length;
+  int oldColumn = a[0].length;
+  double[][] newArr = new double[a.length+1][a[0].length+1];
+
+  for (int r = 0; r < a.length; r++) {
+    for (int c = 0; c < a[0].length; c++) {
+      newArr[r][c] = a[r][c];
+    }
+  }
+
+  //row avg
+  for (int r = 0; r < oldRow; r++) {
+    double sum = 0;
+    for (int c = 0; c < oldColumn; c++) {
+      sum = sum + (newArr[r][c] * weights[c]);
+    }
+    newArr[r][newArr[0].length-1] = sum;
+  }
+
+  //column avg
+  for (int c = 0; c < oldColumn; c++) {
+    double sum = 0;
+    for (int r = 0; r < oldRow; r++) {
+      sum = sum + a[r][c];
+    }
+    newArr[newArr.length-1][c] = sum / oldRow;
+  }
+
+  double total = 0;
+  for (int c = 0; c < oldColumn; c++) {
+    double sum = 0;
+    sum = sum + newArr[a.length][c];
+    total = sum;
+  }
+  newArr[a.length][a[0].length] = total;
+
+  return newArr;
+}
 
   public static void main(String[] args) {
     // double[][] originalSquare = new double[][] {{1.0, 2.0}, {3.0, 4.0}};
@@ -102,6 +141,22 @@ public static void printTranspose(double[][] a) {
     // System.out.println("original array memory address: " + originalRagged);
     // System.out.println("copy array memory address: " + copyOfRagged);
 
+    // double[][] originalArray = new double[][] {{99, 85, 98},
+    // {98, 57, 79},
+    // {92, 77, 74},
+    // {94, 62, 81},
+    // {99, 94, 92},
+    // {80, 76.5, 67},
+    // {76, 58.5, 90.5},
+    // {92, 66, 91},
+    // {77, 70.5, 66.5},
+    // {89, 89.5, 81}};
+
+    // double[][] transpose = makeTranspose(originalArray);
+    // System.out.println("contents of transpose: " + Arrays.deepToString(transpose));
+
+    // printTranspose(originalArray);
+
     double[][] originalArray = new double[][] {{99, 85, 98},
     {98, 57, 79},
     {92, 77, 74},
@@ -113,9 +168,8 @@ public static void printTranspose(double[][] a) {
     {77, 70.5, 66.5},
     {89, 89.5, 81}};
 
-    // double[][] transpose = makeTranspose(originalArray);
-    // System.out.println("contents of transpose: " + Arrays.deepToString(transpose));
+    double[] originalWeights = new double[] {0.25, 0.25, 0.5};
 
-    printTranspose(originalArray);
+    System.out.println(Arrays.deepToString(withWeightedAverage(originalArray, originalWeights)));
   }
 }
